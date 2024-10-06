@@ -47,6 +47,15 @@ const LoadVideo =() => {
 //     "description": "'Midnight Serenade' by Noah Walker is a soulful journey into the depths of the night, capturing the mystique and allure of a moonlit evening. With 543K views, this song brings together tender melodies and evocative lyrics, making it a favorite among listeners seeking a contemplative yet uplifting experience. Immerse yourself in this musical masterpiece and feel the calm embrace of the night."
 // }
 
+// get time funtion
+const  getTimeString=(time)=>{
+    const hour = parseInt(time/3600);
+    let remainsec =(time%3600)
+    const minute =parseInt(remainsec/60);
+    const second = remainsec%60;
+    return  `${hour}h ${minute} min ${second}sec ago`
+}
+
 
 // DisplayVideos Funtion
 const DisplayVideos = videos => {
@@ -55,11 +64,12 @@ const DisplayVideos = videos => {
         const videoAdd =document.getElementById('videos')
         const card =document.createElement('div')
         card.innerHTML=`
-            <figure class="h-[200px] ">
+            <figure class="h-[200px] relative">
                 <img
                 src="${video.thumbnail}"
                 class="h-full w-full object-cover rounded-md"
                 alt="video" />
+                ${ video.others.posted_date == 0 ||  video.others.posted_date == 1672656000? "" : `<span class="bg-black text-white rounded-md right-2 bottom-2 absolute px-2 ">${getTimeString(video.others.posted_date)}</span>`}
             </figure>
             <div class="py-2 px-0 flex gap-4">
                 <div>
@@ -69,9 +79,11 @@ const DisplayVideos = videos => {
                  <h1 class="font-bold">${video.title}</h1>
                  <div class="flex items-center gap-2">
                     <p class="text-gray-500 text-sm">${video.authors[0].profile_name}</p>
-                    <img class="w-5 h-5" src="https://img.icons8.com/?size=96&id=D9RtvkuOe31p&format=png"/>
+                    ${
+                      video.authors[0].verified === true ? '<img class="w-5 h-5" src="https://img.icons8.com/?size=96&id=D9RtvkuOe31p&format=png"/>' :""
+                    }
                  </div>
-                 <p></p>
+                 <p class="text-gray-500 text-sm">${video.others.views}</p>
                 </div>
             </div>
         `
