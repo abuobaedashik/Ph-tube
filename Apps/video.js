@@ -6,11 +6,26 @@ const Loadcatagory = () => {
     .catch(error=> console.error(Error,"error"));
 }
 
+// class remove funtion 
+const removeBg =()=> {
+    const btnAll =document.getElementsByClassName('button-sr')
+    console.log(btnAll)
+    for (const btn of btnAll) {
+        btn.classList.remove('btn-bg')
+    }
+}
+
 // LoadCategoryVideos Funtion
  const LoadCategoryVideos = (id)=> {
     fetch(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`)
     .then(res => res.json())
-    .then(data => DisplayVideos(data.category))
+    .then(data =>{
+        //  all button active class remove
+        removeBg();
+        //  button active koro
+        const Btnsingle =document.getElementById(`btn-${id}`) 
+        Btnsingle.classList.add('btn-bg')
+        DisplayVideos(data.category)})
     .catch(error=> console.error(Error,"error"));
  }
 
@@ -21,7 +36,7 @@ const Displaycatagory = (category) => {
         const btn = document.getElementById("category-btn")
          const buttonContainer =document.createElement("div")
          buttonContainer.innerHTML=`
-         <button onclick="LoadCategoryVideos(${item.category_id})" class="style-btn text-sm font-bold">${item.category}</button>
+         <button id="btn-${item.category_id}" onclick="LoadCategoryVideos(${item.category_id})" class="style-btn text-sm font-bold button-sr">${item.category}</button>
          `
          btn.append(buttonContainer);
     })
