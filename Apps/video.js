@@ -44,7 +44,7 @@ const Displaycatagory = (category) => {
 
 // VideosLoad Funtion
 const LoadVideo =() => {
-    fetch('https://openapi.programming-hero.com/api/phero-tube/videos')
+    fetch('https://openapi.programming-hero.com/api/phero-tube/videos?title=')
     .then(res => res.json())
     .then(data=> DisplayVideos(data.videos))
     .catch(error=>  console.error(Error,"error"));
@@ -58,6 +58,26 @@ const  getTimeString=(time)=>{
     return  `${hour}h ${minute} min ${second}sec ago`
 }
 
+// video details Funtion
+const videoDetails=(videoid)=>{
+    console.log(videoid)
+    fetch(`https://openapi.programming-hero.com/api/phero-tube/video/${videoid}`)
+    .then(res => res.json())
+    .then(data=>videoDriscption(data.video))
+    
+}
+
+// videoDriscption function
+videoDriscption = (video)=> {
+    console.log(video);
+    const ModalAdd =document.getElementById('model-contant');
+    document.getElementById(MyModal.showModal())
+    ModalAdd.innerHTML=`
+     <img class="object-cover" src="${video.thumbnail}"/>
+     <p class="pt-3">${video.description}</p>
+     <p class="pt-1 text-xs font-extralight"> Abu Obaed Ashik</p>
+    `
+}
 
 // DisplayVideos Funtion
 const DisplayVideos = videos => {
@@ -98,10 +118,17 @@ const DisplayVideos = videos => {
                  </div>
                  <p class="text-gray-500 text-sm">${video.others.views}</p>
                 </div>
+
+                <div>
+                  <button  onclick="videoDetails('${video.video_id}')" class="btn btn-sm btn-error">Details</button>
+                </div>
             </div>
         `
         videoAdd.append(card);
     })
 }
+document.getElementById('search-btn').addEventListener('keyup',click=(e)=>{
+  console.log(e.target.value)
+})
 Loadcatagory();
 LoadVideo() 

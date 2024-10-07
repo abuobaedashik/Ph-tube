@@ -1,57 +1,84 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ph-Tube</title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.12/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.12/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-       .style-btn{
-         background: #e5e5e53c;
-         padding: 8px 20px;
-         border-radius: 6px;
-         font-weight: bold;
-       }
-       
-       .btn-bg{
-         background-color: #FF1F3D;
-         font: white;
-       }
-    </style>
-</head>
-<body>
-     <!-- header -->
-      <header class="w-11/12 mx-auto mt-8">
-         <nav class="flex  md:flex justify-between items-center mb-5">
-             <div><img src="./Assets/Logo.png" alt="logo"></div>
-             <!-- <button class="btn" onclick="Loadcatagory()">Get buttons</button>
-             <button class="btn" onclick="LoadVideo()">Get Videos</button> -->
-             <div class="hidden md:block">
-                <label class="input input-bordered flex items-center gap-2 h-8">
-                    <input type="text" class="grow" placeholder="Search" />
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      class="h-4 w-4 opacity-70">
-                      <path
-                        fill-rule="evenodd"
-                        d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-                        clip-rule="evenodd" />
-                    </svg>
-                  </label>
-             </div>
-             <button class="hover:bg-[#ff1f3d6a] bg-[#FF1F3D] py-2 px-3 rounded-md text-white">Blog</button>
-         </nav>
-          <hr>
-         <div id="category-btn" class="flex items-center justify-center py-2  px-4 gap-5"></div>
-      </header>
+      .style-btn {
+        background: #e5e5e53c;
+        padding: 8px 20px;
+        border-radius: 6px;
+        font-weight: bold;
+      }
 
-      <main>
-         <section id="videos" class="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-5 xl:grid-cols-3  py-6 gap-6 "> 
-        </section>
-      </main>
-    <script src="./Apps/video.js"></script>  
-</body>
+      .btn-bg {
+        background-color: #ff1f3d;
+        font: white;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- header -->
+    <header class="w-11/12 mx-auto mt-8">
+      <nav class="flex md:flex justify-between items-center mb-5">
+        <div><img src="./Assets/Logo.png" alt="logo" /></div>
+        <div class="">
+          <label class="input input-bordered flex items-center gap-2 h-8">
+            <input id="search-btn" type="text" class="grow" placeholder="Search" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              class="h-4 w-4 opacity-70"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </label>
+        </div>
+        <button
+          class="md:block hover:bg-[#ff1f3d6a] bg-[#FF1F3D] py-2 px-3 rounded-md text-white"
+        >
+          Blog
+        </button>
+      </nav>
+      <hr />
+      <div
+        id="category-btn"
+        class="flex items-center justify-center py-2 px-4 gap-5"
+      ></div>
+    </header>
+
+    <main>
+      <section
+        id="videos"
+        class="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-5 xl:grid-cols-3 py-6 gap-6"
+      ></section>
+    </main>
+
+    <!-- modal -->
+    <!-- Open the modal using ID.showModal() method -->
+    <button class="btn hidden" onclick="MyModal.showModal()">open modal</button>
+    <dialog id="MyModal" class="modal modal-bottom sm:modal-middle">
+      <div class="modal-box">
+        <h3 id="model-contant" class="text-sm font-normal"></h3>
+        <div class="modal-action">
+          <form method="dialog">
+            <button class="btn">Close</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+    <script src="./Apps/video.js"></script>
+  </body>
 </html>
